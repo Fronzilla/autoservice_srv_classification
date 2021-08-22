@@ -108,8 +108,9 @@ def main():
         if not df.empty:
 
             if predict_button:
-                predictions = predict(df, num_classes)
-                st.write(predictions)
+                with st.spinner("Предсказание..."):
+                    predictions = predict(df, num_classes)
+                    st.write(predictions)
 
                 predictions_labels = list(predictions.keys())
                 with st.spinner("Загрузка SHapley Additive exPlanations..."):

@@ -24,8 +24,6 @@ with st.spinner('Загрузка модели машинного обучени
 explainer = shap.TreeExplainer(classifier)
 sex_mapping = {'Мужчина': 1, 'Женщина': 2}
 
-st.set_option('deprecation.showPyplotGlobalUse', False)
-
 
 def st_shap(plot, height=None):
     """
@@ -49,22 +47,22 @@ def main():
     st.header("Сервис предсказания поломок автомобилей (DEMO)")
     st.subheader("FAQ")
 
-    with st.expander("Какие типы поломок сервис умеет предсказывать?"):
+    with st.beta_expander("Какие типы поломок сервис умеет предсказывать?"):
         st.write(list(classifier.classes_))
 
-    with st.expander("Для каких автомобилей работаю предсказания?"):
+    with st.beta_expander("Для каких автомобилей работаю предсказания?"):
         st.write(list(brands_mapping.keys()))
 
-    with st.expander("Какие марки автомобилей поддерживаются?"):
+    with st.beta_expander("Какие марки автомобилей поддерживаются?"):
         st.write(brands_mapping)
 
-    with st.expander("Как работает предсказание?"):
+    with st.beta_expander("Как работает предсказание?"):
         st.write("""
         Под капотом работает мощный алгоритм машинного обучения - градиентный бустинг, 
         который был обучен на большом наборе данных о поломках автомобилей
         """)
 
-    with st.expander("Как интерпретировать предсказания?"):
+    with st.beta_expander("Как интерпретировать предсказания?"):
         st.write("""
         Модель отдает ответ в формате {тип поломки: вероятность}
         """)
@@ -122,17 +120,6 @@ def main():
                                 shap_values[which_class],
                                 feature_names=classifier.feature_names_
                             )
-                        )
-
-                        st.pyplot(
-                            shap.waterfall_plot(
-                                shap.Explanation(
-                                    values=shap_values[int(which_class)][0],
-                                    base_values=explainer.expected_value[int(which_class)],
-                                    feature_names=classifier.feature_names_
-                                )
-                            ),
-                            transparent=True
                         )
 
 

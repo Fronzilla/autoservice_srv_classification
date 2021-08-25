@@ -74,6 +74,12 @@ def main():
         способствует ее успешному исходу
         """)
 
+    with st.expander("Хотите такой инструмент у себя на предприятии?"):
+        st.write("""
+        Подписывайтесь на канал Макара Алексеева, там есть его контакты.
+        https://t.me/cto_sto
+        """)
+
     st.sidebar.header('Информация об автомобиле')
     brand = st.sidebar.selectbox('Выберите марку машины', options=brands_mapping.keys())
     if brand:
